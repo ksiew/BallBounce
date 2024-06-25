@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5fyj5nyjfopr"]
+
+[ext_resource type="Script" path="res://Ball.gd" id="1_5jcpq"]
+[ext_resource type="Script" path="res://Area2D.gd" id="2_di1ca"]
+[ext_resource type="Texture2D" uid="uid://bevh6vcynctqf" path="res://ball.jpg" id="2_kuid4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xiwk1"]
+size = Vector2(1501.5, 219)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63y2o"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_piuyn"]
+radius = 32.0
+height = 64.0
+
+[sub_resource type="Curve" id="Curve_exi6c"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_8nts1"]
+curve_x = SubResource("Curve_exi6c")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73jma"]
+size = Vector2(79, 652)
+
+[node name="BallBounce" type="Node2D"]
+
+[node name="FailZone" type="Node2D" parent="."]
+position = Vector2(4, 0)
+
+[node name="Area2D" type="Area2D" parent="FailZone"]
+position = Vector2(42, 28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FailZone/Area2D"]
+position = Vector2(618, 733)
+shape = SubResource("RectangleShape2D_xiwk1")
+
+[node name="Controller" type="Area2D" parent="."]
+position = Vector2(97, 79)
+script = ExtResource("2_di1ca")
+
+[node name="Sprite2D" type="Sprite2D" parent="Controller"]
+scale = Vector2(0.0562501, 0.0555555)
+texture = ExtResource("2_kuid4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Controller"]
+shape = SubResource("RectangleShape2D_63y2o")
+
+[node name="Ball2" type="Area2D" parent="."]
+position = Vector2(610, 203)
+script = ExtResource("1_5jcpq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball2"]
+shape = SubResource("CapsuleShape2D_piuyn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball2"]
+position = Vector2(3, 0)
+scale = Vector2(0.1875, 40.75)
+texture = SubResource("CurveXYZTexture_8nts1")
+
+[node name="WallL" type="Area2D" parent="."]
+position = Vector2(615, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallL"]
+position = Vector2(-620, 321)
+shape = SubResource("RectangleShape2D_73jma")
+
+[node name="WallR" type="Area2D" parent="."]
+position = Vector2(612, 72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallR"]
+position = Vector2(533, 256)
+shape = SubResource("RectangleShape2D_73jma")
+
+[connection signal="area_entered" from="Ball2" to="Ball2" method="_hit_controller"]

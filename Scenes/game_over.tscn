@@ -1,0 +1,103 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvr3um2qorsnu"]
+
+[ext_resource type="Theme" uid="uid://cby6qou84qctc" path="res://Themes/button.tres" id="1_27wws"]
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_fs5r3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qh5qv"]
+bg_color = Color(0.787759, 0.787759, 0.787759, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.406375, 0.332876, 0.197457, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0.29219, 0.29219, 0.29219, 0.6)
+shadow_size = 10
+
+[sub_resource type="Theme" id="Theme_5hx2j"]
+Panel/styles/panel = SubResource("StyleBoxFlat_qh5qv")
+
+[sub_resource type="Theme" id="Theme_f2qb3"]
+default_font_size = 36
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_fs5r3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -200.0
+offset_right = 200.0
+offset_bottom = 405.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = SubResource("Theme_5hx2j")
+
+[node name="RestartContainer" type="HBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.686
+anchor_right = 0.5
+anchor_bottom = 0.686
+offset_bottom = 40.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="MainPanel/RestartContainer"]
+z_index = 9
+layout_mode = 2
+theme = ExtResource("1_27wws")
+text = "Restart
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.034
+anchor_right = 0.8
+anchor_bottom = 0.114
+offset_left = 33.0
+offset_top = 27.875
+offset_right = -14.0
+offset_bottom = 211.815
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_f2qb3")
+text = "GAME OVER!"
+horizontal_alignment = 1
+
+[node name="Background" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.513726)
+z_index = -4
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 2.0
+offset_right = -3.0
+offset_bottom = 2.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="MainPanel/RestartContainer/Button" to="." method="send_restart_game"]

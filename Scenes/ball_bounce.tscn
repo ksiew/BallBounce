@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=3 uid="uid://c5fyj5nyjfopr"]
+
+[ext_resource type="Script" path="res://Scripts/ball_bounce.gd" id="1_xldd5"]
+[ext_resource type="PackedScene" uid="uid://dh3s251rbqdb" path="res://Scenes/controller.tscn" id="2_phkj5"]
+[ext_resource type="PackedScene" uid="uid://c1glk25b0rek8" path="res://Scenes/ball.tscn" id="3_4vpfx"]
+[ext_resource type="PackedScene" uid="uid://bc4kip25xc3qt" path="res://Scenes/HUD.tscn" id="4_triew"]
+[ext_resource type="PackedScene" uid="uid://bvr3um2qorsnu" path="res://Scenes/game_over.tscn" id="5_4lxr4"]
+[ext_resource type="Script" path="res://Scenes/Animations.gd" id="5_17x65"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73jma"]
+size = Vector2(79, 652)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xiwk1"]
+size = Vector2(1501.5, 219)
+
+[sub_resource type="Animation" id="Animation_w8r4o"]
+resource_name = "Game_Over"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/GameOver:anchor_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.56917, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/GameOver:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1.56917, 2.21914),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_71ya1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HUD/GameOver:anchor_bottom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HUD/GameOver:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lr03n"]
+_data = {
+"Game_Over": SubResource("Animation_w8r4o"),
+"RESET": SubResource("Animation_71ya1")
+}
+
+[node name="BallBounce" type="Node2D"]
+script = ExtResource("1_xldd5")
+
+[node name="WallL" type="Area2D" parent="." groups=["Wall"]]
+position = Vector2(615, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallL"]
+position = Vector2(-656, 325)
+shape = SubResource("RectangleShape2D_73jma")
+
+[node name="WallR" type="Area2D" parent="." groups=["Wall"]]
+position = Vector2(612, 72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallR"]
+position = Vector2(580, 255)
+shape = SubResource("RectangleShape2D_73jma")
+
+[node name="Ball" parent="." instance=ExtResource("3_4vpfx")]
+position = Vector2(754, 173)
+GRAVITY = 15
+MULTIPLYER = 735
+
+[node name="Controller" parent="." groups=["Controller"] instance=ExtResource("2_phkj5")]
+
+[node name="HUD" parent="." instance=ExtResource("4_triew")]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1143.0
+offset_bottom = 648.0
+grow_horizontal = 1
+
+[node name="GameOver" parent="HUD" instance=ExtResource("5_4lxr4")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.5
+anchor_bottom = 2.5
+grow_vertical = 1
+
+[node name="FailZone" type="Area2D" parent="." groups=["FailZone"]]
+position = Vector2(46, 28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FailZone"]
+position = Vector2(618, 733)
+shape = SubResource("RectangleShape2D_xiwk1")
+
+[node name="Animations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lr03n")
+}
+movie_quit_on_finish = true
+script = ExtResource("5_17x65")
+
+[connection signal="score_change" from="." to="HUD" method="update_score"]
+[connection signal="game_over" from="Ball" to="." method="start_game_over"]
+[connection signal="hit_controller" from="Ball" to="." method="increment_score"]
+[connection signal="hit_controller" from="Ball" to="HUD" method="update_score"]
+[connection signal="start_game" from="HUD" to="Ball" method="start"]
+[connection signal="start_game" from="HUD" to="Controller" method="start"]
+[connection signal="restart_game" from="HUD/GameOver" to="Ball" method="start"]
+[connection signal="restart_game" from="HUD/GameOver" to="Controller" method="start"]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://bc4kip25xc3qt"]
+
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_fkboi"]
+
+[sub_resource type="FontFile" id="FontFile_jldfu"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/46/0/ascent = 0.0
+cache/0/46/0/descent = 0.0
+cache/0/46/0/underline_position = 0.0
+cache/0/46/0/underline_thickness = 0.0
+cache/0/46/0/scale = 1.0
+cache/0/46/0/kerning_overrides/46/0 = Vector2(0, 0)
+cache/0/46/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/46/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nffvf"]
+font = SubResource("FontFile_jldfu")
+font_size = 46
+
+[sub_resource type="SystemFont" id="SystemFont_a2qum"]
+font_weight = 425
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3r3b0"]
+bg_color = Color(0.309023, 0.454518, 0.181922, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.557325, 0.336262, 0.155688, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0.423651, 0.423651, 0.423651, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(0, 1.085)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuq4n"]
+bg_color = Color(0.525411, 0.747613, 0.33287, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.740569, 0.461034, 0.240261, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 10.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0.88106, 0.872678, 0.856147, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(0, 0.815)
+
+[sub_resource type="Theme" id="Theme_gt4vq"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = SubResource("SystemFont_a2qum")
+Button/styles/hover = SubResource("StyleBoxFlat_3r3b0")
+Button/styles/normal = SubResource("StyleBoxFlat_yuq4n")
+Button/styles/pressed = SubResource("StyleBoxFlat_yuq4n")
+
+[sub_resource type="LabelSettings" id="LabelSettings_o07wh"]
+font_size = 32
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_left = 0.65
+anchor_top = 0.031
+anchor_right = 0.65
+anchor_bottom = 0.031
+offset_left = -748.8
+offset_top = -20.088
+offset_right = 394.2
+offset_bottom = 627.912
+grow_horizontal = 2
+script = ExtResource("1_fkboi")
+
+[node name="Title" type="Label" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+grow_horizontal = 2
+text = "Ball Bounce"
+label_settings = SubResource("LabelSettings_nffvf")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 0.6
+grow_horizontal = 2
+theme = SubResource("Theme_gt4vq")
+text = "Start
+"
+
+[node name="Scorer" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.05
+anchor_right = 0.9
+anchor_bottom = 0.1
+text = "0"
+label_settings = SubResource("LabelSettings_o07wh")
+
+[connection signal="pressed" from="Button" to="." method="start_button"]
