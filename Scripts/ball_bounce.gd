@@ -6,6 +6,7 @@ signal score_change(old_score, new_score);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("start")
 	score = 0;
 	
 func increment_score():

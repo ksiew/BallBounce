@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="CollectBehavior" load_steps=2 format=3 uid="uid://cyesrvw3w6u8v"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/Behaviors/CollectBehavior.gd" id="1_ba08b"]
+
+[resource]
+script = ExtResource("1_ba08b")

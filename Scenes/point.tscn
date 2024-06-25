@@ -1,27 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://cofhbw0dobo6n"]
+[gd_scene load_steps=8 format=3 uid="uid://cofhbw0dobo6n"]
 
 [ext_resource type="Texture2D" uid="uid://bevh6vcynctqf" path="res://Sprites/ball.jpg" id="1_ekrpv"]
-[ext_resource type="Script" path="res://Scripts/InteractableComponent.gd" id="2_obx80"]
+[ext_resource type="Script" path="res://Scripts/Interactables/InteractableComponent.gd" id="2_aqmpo"]
 [ext_resource type="Script" path="res://Scripts/Collectable.gd" id="3_pwktb"]
+[ext_resource type="Resource" uid="uid://b0cwap7mfaokb" path="res://Resources/PointBehavior.tres" id="4_n5agy"]
+[ext_resource type="Resource" uid="uid://cyesrvw3w6u8v" path="res://Resources/CollectBehavior.tres" id="5_lj2ak"]
+
+[sub_resource type="Resource" id="Resource_ygs0k"]
+script = ExtResource("3_pwktb")
+Points = 0
+Muliplyer = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fadry"]
 size = Vector2(26, 26)
 
-[sub_resource type="Resource" id="Resource_6lmsv"]
-script = ExtResource("3_pwktb")
-Points = 10
-Muliplyer = 0
-
-[node name="Point" type="Area2D"]
+[node name="Point" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("1_ekrpv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_fadry")
+[node name="InteractableComponent" type="Area2D" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_aqmpo")
+actor = NodePath("..")
+stats = SubResource("Resource_ygs0k")
+behaviors = Array[Resource]([ExtResource("4_n5agy"), ExtResource("5_lj2ak")])
 
-[node name="InteractableComponent" type="Node2D" parent="." node_paths=PackedStringArray("Actor")]
-script = ExtResource("2_obx80")
-Actor = NodePath("..")
-Stats = SubResource("Resource_6lmsv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
+shape = SubResource("RectangleShape2D_fadry")

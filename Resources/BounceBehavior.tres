@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="BounceBehavior" load_steps=2 format=3 uid="uid://bh8oh6myam6l4"]
+
+[ext_resource type="Script" path="res://Scripts/Interactables/Behaviors/BounceBehavior.gd" id="1_ami7d"]
+
+[resource]
+script = ExtResource("1_ami7d")

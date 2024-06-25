@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5fyj5nyjfopr"]
+[gd_scene load_steps=13 format=3 uid="uid://c5fyj5nyjfopr"]
 
 [ext_resource type="Script" path="res://Scripts/ball_bounce.gd" id="1_xldd5"]
 [ext_resource type="PackedScene" uid="uid://dh3s251rbqdb" path="res://Scenes/controller.tscn" id="2_phkj5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bc4kip25xc3qt" path="res://Scenes/HUD.tscn" id="4_triew"]
 [ext_resource type="PackedScene" uid="uid://bvr3um2qorsnu" path="res://Scenes/game_over.tscn" id="5_4lxr4"]
 [ext_resource type="Script" path="res://Scenes/Animations.gd" id="5_17x65"]
+[ext_resource type="PackedScene" uid="uid://cofhbw0dobo6n" path="res://Scenes/point.tscn" id="7_y68g8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73jma"]
 size = Vector2(79, 652)
@@ -129,6 +130,9 @@ libraries = {
 }
 movie_quit_on_finish = true
 script = ExtResource("5_17x65")
+
+[node name="Point" parent="." instance=ExtResource("7_y68g8")]
+position = Vector2(755, 194)
 
 [connection signal="score_change" from="." to="HUD" method="update_score"]
 [connection signal="game_over" from="Ball" to="." method="start_game_over"]
