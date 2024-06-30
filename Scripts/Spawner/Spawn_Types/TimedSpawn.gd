@@ -1,6 +1,6 @@
 class_name TimedSpawn
 
-extends Spawn_Type;
+extends Spawn_Time_Type;
 
 @export var delay:float;
 var timer = Timer.new();

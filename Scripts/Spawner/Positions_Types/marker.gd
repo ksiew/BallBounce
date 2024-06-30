@@ -1,6 +1,8 @@
 class_name Marker;
 
-extends Position_Type
+extends Spawn_Position_Type;
 
-func get_spawn_position(area):
+@export var area:CollisionShape2D;
+
+func get_spawn_position():
 	return area.position;

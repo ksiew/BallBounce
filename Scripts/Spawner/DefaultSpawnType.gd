@@ -1,6 +1,6 @@
-class_name Spawn_Type
+class_name Spawn_Time_Type;
 
-extends Node2D;
+extends Node;
 
 signal spawn_entity;
 

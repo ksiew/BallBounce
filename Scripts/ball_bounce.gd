@@ -1,7 +1,6 @@
 extends Node2D
 
 var score;
-@export export_enum()
 
 signal score_change(old_score, new_score);
 

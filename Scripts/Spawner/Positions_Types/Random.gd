@@ -1,8 +1,10 @@
 class_name RandomSpawn;
 
-extends Resource
+extends Spawn_Position_Type;
 
-func get_spawn_position(area:CollisionShape2D):
+@export var area:CollisionShape2D;
+
+func get_spawn_position():
 	var width = area.get_shape().size.x/2;
 	var height = area.get_shape().size.y/2;
 	var origin = area.position;

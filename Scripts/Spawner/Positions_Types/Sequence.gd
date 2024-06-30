@@ -1,12 +1,12 @@
 class_name Sequence;
 
-extends Resource
+extends Spawn_Position_Type
 
 @export var markers:Array[Marker2D];
 
 var i = 0;
 
-func get_spawn_position(area):
+func get_spawn_position():
 	var pos = markers[i];
 	i = i + 1;
 	if i == markers.size():

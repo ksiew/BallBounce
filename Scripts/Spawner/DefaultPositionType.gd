@@ -1,6 +1,6 @@
-class_name Position_Type;
+class_name Spawn_Position_Type;
 
-extends Resource
+extends Area2D;
 
-func get_spawn_position(area):
+func get_spawn_position():
 	pass;
