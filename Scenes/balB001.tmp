@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://Scenes/Animations.gd" id="5_17x65"]
 [ext_resource type="PackedScene" uid="uid://cofhbw0dobo6n" path="res://Scenes/point.tscn" id="7_y68g8"]
 [ext_resource type="PackedScene" uid="uid://hixsvdfjlem0" path="res://Scenes/default_spawner.tscn" id="8_7hpm1"]
+[ext_resource type="Resource" uid="uid://dbbcv2dekwodc" path="res://Resources/Spawn_position_Types/marker.tres" id="9_6f0u1"]
 [ext_resource type="Script" path="res://Scripts/Spawner/Spawn_Types/TimedSpawn.gd" id="9_tolie"]
-[ext_resource type="Resource" uid="uid://d17s442e3x64d" path="res://Resources/Spawn_position_Types/Random.tres" id="9_xi4ew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73jma"]
 size = Vector2(79, 652)
@@ -78,7 +78,6 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5m0me"]
-size = Vector2(935, 468)
 
 [node name="BallBounce" type="Node2D"]
 script = ExtResource("1_xldd5")
@@ -140,16 +139,17 @@ script = ExtResource("5_17x65")
 [node name="Point" parent="." instance=ExtResource("7_y68g8")]
 position = Vector2(755, 194)
 
-[node name="spawner" parent="." node_paths=PackedStringArray("area", "spawn_type") instance=ExtResource("8_7hpm1")]
+[node name="spawner" parent="." node_paths=PackedStringArray("area", "entity_type", "spawn_type") instance=ExtResource("8_7hpm1")]
 area = NodePath("CollisionShape2D")
-entity_type = ExtResource("7_y68g8")
-position_type = ExtResource("9_xi4ew")
+entity_type = NodePath("Point")
+position_type = ExtResource("9_6f0u1")
 spawn_type = NodePath("TimedSpawn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="spawner"]
-position = Vector2(582.5, 259)
 shape = SubResource("RectangleShape2D_5m0me")
 disabled = true
+
+[node name="Point" parent="spawner" instance=ExtResource("7_y68g8")]
 
 [node name="TimedSpawn" type="Node2D" parent="spawner"]
 position = Vector2(583, 315)

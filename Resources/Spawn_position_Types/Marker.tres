@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="Marker" load_steps=2 format=3 uid="uid://20fwohs4vcr1"]
+
+[ext_resource type="Script" path="res://Scripts/Spawner/Positions_Types/marker.gd" id="1_xjopy"]
+
+[resource]
+script = ExtResource("1_xjopy")

@@ -7,8 +7,8 @@ var speedY = 100;
 var speedX = 100;
 var initPos;
 
-signal hit_controller;
 signal game_over;
+signal points_collected(points);
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +30,6 @@ func _hit_controller(controller):
 		#var angle = controller.position.angle_to_point(position);
 		#speedY = sin(angle)  * MULTIPLYER;
 		#speedX = cos(angle) * MULTIPLYER;
-		emit_signal("hit_controller");
 	if controller.is_in_group("FailZone"):
 		emit_signal("game_over");
 		hide();
@@ -43,11 +42,13 @@ func start():
 	position = initPos;
 	show();
 	
+func on_point_collect(points):
+	points_collected.emit(points);
+	
 func bounce(area):
 	var angle = area.position.angle_to_point(position);
 	speedY = sin(angle)  * MULTIPLYER;
 	speedX = cos(angle) * MULTIPLYER;
-	emit_signal("hit_controller");
 	
 func handle_game_over():
 	hide();

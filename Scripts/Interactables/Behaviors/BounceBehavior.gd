@@ -5,6 +5,6 @@ class_name BounceBehavior;
 
 extends InteractableBehavior;
 
-func trigger_behavior(interactable, ball):
+func trigger_behavior(interactable, ball, stats):
 	ball.bounce(interactable);
 

@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/ball_bounce.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Point="*res://Scenes/point.tscn"
+
 [rendering]
 
 renderer/rendering_method="mobile"

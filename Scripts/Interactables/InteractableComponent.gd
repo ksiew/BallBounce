@@ -11,7 +11,7 @@ func _ready():
 	
 func ball_contact(ball):
 	for behavior in behaviors:
-		behavior.trigger_behavior(actor, ball);
+		behavior.trigger_behavior(actor, ball, stats);
 		
 
 

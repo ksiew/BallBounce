@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh3s251rbqdb"]
+[gd_scene load_steps=9 format=3 uid="uid://dh3s251rbqdb"]
 
 [ext_resource type="Script" path="res://Scripts/Controller.gd" id="1_ssm3d"]
 [ext_resource type="Texture2D" uid="uid://bevh6vcynctqf" path="res://Sprites/ball.jpg" id="2_4ft0w"]
 [ext_resource type="Script" path="res://Scripts/Interactables/InteractableComponent.gd" id="3_b0c6j"]
-[ext_resource type="Script" path="res://Scripts/Collectable.gd" id="4_2uf7k"]
+[ext_resource type="Script" path="res://Scripts/Interactables/InteractableStats.gd" id="4_ouf7p"]
 [ext_resource type="Resource" uid="uid://bh8oh6myam6l4" path="res://Resources/BounceBehavior.tres" id="5_jwd7h"]
+[ext_resource type="Resource" uid="uid://b0cwap7mfaokb" path="res://Resources/PointBehavior.tres" id="6_npmi5"]
 
 [sub_resource type="Resource" id="Resource_i2s1r"]
-script = ExtResource("4_2uf7k")
-Points = 0
+script = ExtResource("4_ouf7p")
+Points = 1
 Muliplyer = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lt3jk"]
@@ -25,7 +26,7 @@ texture = ExtResource("2_4ft0w")
 script = ExtResource("3_b0c6j")
 actor = NodePath("..")
 stats = SubResource("Resource_i2s1r")
-behaviors = Array[Resource]([ExtResource("5_jwd7h")])
+behaviors = Array[Resource]([ExtResource("5_jwd7h"), ExtResource("6_npmi5")])
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="InteractableComponent"]
 shape = SubResource("RectangleShape2D_lt3jk")

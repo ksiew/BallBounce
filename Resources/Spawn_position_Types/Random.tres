@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RandomSpawn" load_steps=2 format=3 uid="uid://d17s442e3x64d"]
+
+[ext_resource type="Script" path="res://Scripts/Spawner/Positions_Types/Random.gd" id="1_nyh2e"]
+
+[resource]
+script = ExtResource("1_nyh2e")

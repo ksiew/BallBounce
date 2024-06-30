@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://bevh6vcynctqf" path="res://Sprites/ball.jpg" id="1_ekrpv"]
 [ext_resource type="Script" path="res://Scripts/Interactables/InteractableComponent.gd" id="2_aqmpo"]
-[ext_resource type="Script" path="res://Scripts/Collectable.gd" id="3_pwktb"]
+[ext_resource type="Script" path="res://Scripts/Interactables/InteractableStats.gd" id="3_m2taq"]
 [ext_resource type="Resource" uid="uid://b0cwap7mfaokb" path="res://Resources/PointBehavior.tres" id="4_n5agy"]
 [ext_resource type="Resource" uid="uid://cyesrvw3w6u8v" path="res://Resources/CollectBehavior.tres" id="5_lj2ak"]
 
 [sub_resource type="Resource" id="Resource_ygs0k"]
-script = ExtResource("3_pwktb")
-Points = 0
+script = ExtResource("3_m2taq")
+Points = 5
 Muliplyer = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fadry"]

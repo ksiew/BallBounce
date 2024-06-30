@@ -1,6 +1,7 @@
 extends Node2D
 
 var score;
+@export export_enum()
 
 signal score_change(old_score, new_score);
 
@@ -9,8 +10,9 @@ func _ready():
 	print("start")
 	score = 0;
 	
-func increment_score():
-	broadcast_score_change(score + 1);
+func on_points_collected(points):
+	score += points;
+	score_change.emit(score, score - points);
 	
 func broadcast_score_change(new_score):
 	score_change.emit(score, new_score);
